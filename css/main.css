@@ -47,6 +47,11 @@ html, body {
     margin: 0 auto;
 }
 
+#valueLabel {
+    line-height: 30px;
+    text-align: right;
+}
+
 #text-input {
     width: 100%;
 }

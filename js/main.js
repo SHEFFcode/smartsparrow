@@ -3,7 +3,7 @@
 =================================================================*/
 
 $(document).ready(function() {
-    $('#text-input').val($('#slider').val());
+    $('#text-input').val($('#slider').val() - 70);
     updateImage();
 });
 
@@ -22,7 +22,9 @@ function drawImage(imageObj, r, g, b) {
     var canvas = document.getElementById('myCanvas');
     var context = canvas.getContext('2d');
     context.drawImage(imageObj, x, y);
-    var imageData = context.getImageData(x, y, imageObj.width, imageObj.height);
+    if (imageObj.width) {
+       var imageData = context.getImageData(x, y, imageObj.width, imageObj.height); 
+    }
     var data = imageData.data;
 
     for(var i = 0; i < data.length; i += 4) {
@@ -39,7 +41,14 @@ function drawImage(imageObj, r, g, b) {
 
 function updateImage (value) {
     //initialize variables and image
-    value = value || 80;
+    value = value || 0;
+    if (value === 0) {
+        var filter = value;
+    }  else  if (value > 0){
+        var filter = value * 255 / 100;
+    } else if (value < 0) {
+        var filter = -value * 255 / 100;
+    }
     var imageObj = new Image();
     imageObj.src = '../img/star-small.png';
     imageObj.onload = function() {
@@ -53,15 +62,19 @@ function updateImage (value) {
     
     /*======= Image Color Logic ========*/
     //neutral
-    if (value === 80) {
+    if (value === 0) {
         drawImage(imageObj);
     }
     //red
-    if (value > 80) {
-        drawImage(imageObj, 0, 255, 255);
+    if (value > 0) {
+        //In order to amplify color change effect, call funciton twice.
+        drawImage(imageObj, 0, filter, filter);
+        drawImage(imageObj, 0, filter, filter);
     //blue
-    } else if (value < 80) {
-        drawImage(imageObj, 255, 255, 0);
+    } else if (value < 0) {
+        //In order to amplify color change effect, call function twice.
+        drawImage(imageObj, filter, filter, 0);
+        drawImage(imageObj, filter, filter, 0);
     }
 }
 
@@ -69,12 +82,53 @@ function updateImage (value) {
                         Range Manipulation
 ====================================================================*/
 
+//Change slider based on text input value.
 $('#text-input').on('change', function() {
-    $('#slider').val($(this).val());
-    updateImage($(this).val());
+    //Adjust for the range offset
+    var self = $(this);
+    var value = Number(self.val());
+    var sliderValue = rangeOffset(value, 'text');
+    $('#slider').val(sliderValue);
+    if (sliderValue - 70 > 0) {
+        updateImage((sliderValue - 70) * 100 / 30);
+    } else if (sliderValue - 70 < 0) {
+        updateImage((sliderValue - 70) * 100 / 70);
+    } else if (sliderValue - 70 === 0) {
+        updateImage(0);
+    }
+    
 });
 
+//Change text-input based based on slider value
 $('#slider').on('change', function() {
-    $('#text-input').val($(this).val());
-    updateImage($(this).val());
+    //Adjust for the range offset
+    var self = $(this);
+    var value = Number(self.val()) - 70;
+    var textValue = rangeOffset(value, 'slider');
+    $('#text-input').val(textValue);
+    updateImage(textValue);
 });
+
+//Range Manipulation Logic
+function rangeOffset (value, mode) {
+    if (value > 0 && mode === 'slider') {
+        var outputValue = value * 100 / 30;
+    } else if (value < 0 && mode === 'slider') {
+        var outputValue = value * 100 / 70;
+    } else if (value > 0 && mode === 'text') {
+        var outputValue = 70 + (value  * 30 / 100);
+    } else if (value < 0 && mode === 'text') {
+        var outputValue = 70 + (value  * 70 / 100);
+    } else if (value === 0 && mode === 'text') {
+        outputValue = 70;
+    }
+    return outputValue;
+}
+
+/*================================================================
+                        Just for Fun
+=================================================================*/
+console.log('%c hireMe() ', 'background: #fff; color: #bada55; font-weight: 700; font-size: 15px;');
+function hireMe () {
+    window.open('http://sheffmachine.com/');
+}
