@@ -61,6 +61,19 @@ html, body {
     margin-top: 40px;
 }
 
+#img1 {
+    margin-right: calc(70% - 40px);
+}
+
+#img2 {
+    margin-right: calc(30% - 30px);
+}
+
+.small-img {
+    width: 20px;
+    display: inline;
+}
+
 footer, .push {
     height: 50px; /* .push must be the same height as .footer */
 }
