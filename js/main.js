@@ -10,7 +10,6 @@ $(document).ready(function() {
 
 //update the image on resize
 $(window).resize( function() {
-    console.log('this ran');
         updateImage();
 });
 
@@ -31,20 +30,21 @@ function drawImage(imageObj, r, g, b) {
     var context = canvas.getContext('2d');
     context.drawImage(imageObj, x, y, imageObj.width / n, imageObj.height / n);
     if (imageObj.width) {
-       var imageData = context.getImageData(x, y, imageObj.width, imageObj.height); 
-    }
-    var data = imageData.data;
+       var imageData = context.getImageData(x, y, imageObj.width, imageObj.height);
+       var data = imageData.data;
 
-    for(var i = 0; i < data.length; i += 4) {
-        // red
-        data[i] =  data[i] - r; // - 255 gives us blue
-        // green
-        data[i + 1] = data[i + 1] - g; // should match the - number in either red or blue
-        // blue
-        data[i + 2] = data[i + 2] - b; // - 255 gives us red
+        for(var i = 0; i < data.length; i += 4) {
+            // red
+            data[i] =  data[i] - r; // - 255 gives us blue
+            // green
+            data[i + 1] = data[i + 1] - g; // should match the - number in either red or blue
+            // blue
+            data[i + 2] = data[i + 2] - b; // - 255 gives us red
+        }
+        // overwrite original image
+        context.putImageData(imageData, x, y);
     }
-    // overwrite original image
-    context.putImageData(imageData, x, y);
+    
 }
 
 function updateImage (value) {
@@ -129,14 +129,20 @@ function rangeOffset (value, mode) {
         var outputValue = 70 + (value  * 70 / 100);
     } else if (value === 0 && mode === 'text') {
         outputValue = 70;
+    } else if (value === 0 && mode === 'slider') {
+        outputValue = 0;
     }
-    return outputValue;
+    return Math.floor(outputValue);
 }
 
 /*================================================================
                         Just for Fun
 =================================================================*/
+console.log('%c learnMore() ', 'background: #fff; color: #ff0000; font-weight: 700; font-size: 15px;');
 console.log('%c hireMe() ', 'background: #fff; color: #bada55; font-weight: 700; font-size: 15px;');
 function hireMe () {
-    window.open('http://sheffmachine.com/');
+    window.open('https://youtu.be/0EtDYWKJnNQ');
+}
+function learnMore () {
+    window.open('https://www.youtube.com/watch?v=h4OnBYrbCjY');
 }
