@@ -44,14 +44,14 @@
                 </div> <!--/.row-->
 
                 <div class="row">
-                    <div class="col-md-5 col-xs-12 form-group">
+                    <div class="col-sm-5 col-xs-12 form-group">
                         <label id="valueLabel" for="value" class="col-md-6 col-md-offset-2">Velocity (km/h)</label>
                         <div class="col-md-4">
                             <input id="text-input" type="number" class="form-control" name="value">
                         </div>
                     </div>
                     <div class="col-sm-5 col-sm-offset-1 col-xs-12">
-                       <input id="slider" type="range" id="myRange" value="70">
+                       <input id="slider" type="range" value="70" min="0" inputmode="numeric" min="-100" max="100">
                        <img id="img1" class="small-img" src="/img/running%20left.png" alt="running-left">
                        <img id="img2" class="small-img" src="/img/standing.png" alt="standing">
                        <img id="img3" class="small-img" src="/img/running.png" alt="running">

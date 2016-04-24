@@ -95,6 +95,14 @@ $('#text-input').on('change', function() {
     //Adjust for the range offset
     var self = $(this);
     var value = Number(self.val());
+    if (value < -100) {
+        value = -100;
+        $('#text-input').val(-100);
+    } 
+    if (value > 100) {
+        value = 100;
+        $('#text-input').val(100);
+    } 
     var sliderValue = rangeOffset(value, 'text');
     $('#slider').val(sliderValue);
     if (sliderValue - 70 > 0) {
@@ -112,6 +120,8 @@ $('#slider').on('change', function() {
     //Adjust for the range offset
     var self = $(this);
     var value = Number(self.val()) - 70;
+    if (value < -100) value = -100;
+    if (value > 100) value = 100;
     var textValue = rangeOffset(value, 'slider');
     $('#text-input').val(textValue);
     updateImage(textValue);
