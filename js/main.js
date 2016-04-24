@@ -2,9 +2,16 @@
                         Initial Page Load
 =================================================================*/
 
+//handle initial params and load image
 $(document).ready(function() {
     $('#text-input').val($('#slider').val() - 70);
     updateImage();
+});
+
+//update the image on resize
+$(window).resize( function() {
+    console.log('this ran');
+        updateImage();
 });
 
 /*================================================================ 
@@ -18,10 +25,11 @@ function drawImage(imageObj, r, g, b) {
     b = b || 0;
     var x = 0;
     var y = 0;
+    var n = 1;
     //set scope variables
     var canvas = document.getElementById('myCanvas');
     var context = canvas.getContext('2d');
-    context.drawImage(imageObj, x, y);
+    context.drawImage(imageObj, x, y, imageObj.width / n, imageObj.height / n);
     if (imageObj.width) {
        var imageData = context.getImageData(x, y, imageObj.width, imageObj.height); 
     }

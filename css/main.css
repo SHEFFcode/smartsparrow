@@ -38,6 +38,11 @@ html, body {
     opacity: 1;
 }
 
+#myCanvas {
+    width: 300px;
+    height: 300px;
+}
+
 #img-container {
     margin-bottom: 20px;
 }
@@ -91,5 +96,9 @@ footer {
 
     #slider {
         margin-top: 0;
+    }
+    #myCanvas {
+        width: 420px;
+        height: 420px;
     }
 }
