@@ -81,6 +81,10 @@ html, body {
     display: inline;
 }
 
+#content {
+    margin-bottom: 20px;
+}
+
 footer, .push {
     height: 50px; /* .push must be the same height as .footer */
 }
