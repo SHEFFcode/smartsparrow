@@ -40,6 +40,8 @@ List of selected best practices used:
 	* Ran through JS synthax validator
 * General
 	* Ran usability testing with folks sitting nearby to find bugs
+	* Ran the site on Chrome, Opera, Safari and Edge
+	* Ran the site on Desktop, iPhone and iPad.
 	
 ##Misc
 Please don't forget to open the console to check for any errors. There may be a little easter egg in there for the curious student and or interviewer :)  [May require disabling the popup blocker.]
