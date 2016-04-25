@@ -30,6 +30,7 @@ html, body {
     fill: #231F20;
     -webkit-transition: all 400ms ease;
     -moz-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
     transition: all 400ms ease;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
