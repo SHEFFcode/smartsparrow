@@ -1,6 +1,8 @@
 #Doppler Effect README
 
 ##Usage Instructions
+Please load this in brackets or similar, there will be a CORS error on the canvas element unless the site is running on a server of some sort.
+
 This web app is meant to demostrate the doppler effect. Use the scale or the input box to change values that correspond to velocity. Both the scale and the input box accept numerical values between 0 and 100. 
 
 Positive values represent moving away from the observer. Negative values represent moving towards the observer.  The app provides more detail on the blue side of the spectrum.
