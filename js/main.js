@@ -64,7 +64,7 @@ function updateImage (value) {
         var filter = -value * 255 / 100;
     }
     var imageObj = new Image();
-    imageObj.src = '../img/star-small.png';
+    imageObj.src = 'img/star-small.png';
     imageObj.onload = function() {
         drawImage(this);
     };
